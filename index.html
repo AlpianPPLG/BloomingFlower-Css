@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flower Clock Animation</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="clock"></div>
+    <div class="flower">
+      <div class="flower-pp">
+        <div class="flower_l"></div>
+        <div class="f">
+          <div class="leaf leaf--1"></div>
+          <div class="leaf leaf--2"></div>
+          <div class="leaf leaf--3"></div>
+          <div class="leaf leaf--4"></div>
+          <div class="leaf leaf--5"></div>
+          <div class="leaf leaf--6"></div>
+          <div class="leaf leaf--7"></div>
+          <div class="leaf leaf--8 flower__fall-down--yellow"></div>
+        </div>
+      </div>
+
+      <div class="flower-pp flower-pp--2">
+        <div class="flower_l"></div>
+        <div class="f">
+          <div class="leaf leaf--1"></div>
+          <div class="leaf leaf--2"></div>
+          <div class="leaf leaf--3"></div>
+          <div class="leaf leaf--4"></div>
+          <div class="leaf leaf--5"></div>
+          <div class="leaf leaf--6"></div>
+          <div class="leaf leaf--7"></div>
+          <div class="leaf leaf--8 flower__fall-down--pink"></div>
+        </div>
+      </div>
+
+      <div class="flower-pp flower-pp--3">
+        <div class="flower_l"></div>
+        <div class="f">
+          <div class="leaf leaf--1"></div>
+          <div class="leaf leaf--2"></div>
+          <div class="leaf leaf--3"></div>
+          <div class="leaf leaf--4"></div>
+          <div class="leaf leaf--5"></div>
+          <div class="leaf leaf--6"></div>
+          <div class="leaf leaf--7"></div>
+          <div class="leaf leaf--8 flower__fall-down--purple"></div>
+        </div>
+      </div>
+      <div class="flower__glass"></div>
+    </div>
+
+    <div id="particles"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const flower = document.querySelector(".flower");
+        const particles = document.getElementById("particles");
+        const clock = document.getElementById("clock");
+
+        // Update clock
+        function updateClock() {
+          const now = new Date();
+          const options = { timeZone: "Asia/Makassar", hour12: false };
+          const timeString = now.toLocaleTimeString("en-US", options);
+          clock.textContent = timeString;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial update
+
+        // Mouse interaction
+        flower.addEventListener("mousemove", (e) => {
+          const rect = flower.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          flower.style.transform = `perspective(1000px) rotateY(${
+            (x - rect.width / 2) / 10
+          }deg) rotateX(${-(y - rect.height / 2) / 10}deg)`;
+        });
+
+        flower.addEventListener("mouseleave", () => {
+          flower.style.transform =
+            "perspective(1000px) rotateY(0deg) rotateX(0deg)";
+        });
+
+        // Create particles
+        function createParticle() {
+          const particle = document.createElement("div");
+          particle.classList.add("particle");
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.width = `${Math.random() * 5 + 1}px`;
+          particle.style.height = particle.style.width;
+          particles.appendChild(particle);
+
+          setTimeout(() => {
+            particle.remove();
+          }, 5000);
+        }
+
+        setInterval(createParticle, 200);
+      });
+    </script>
+  </body>
+</html>
