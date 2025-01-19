@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Elegant Flower Clock</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="contact.css" />
+  </head>
+  <body>
+    <div class="stars"></div>
+    <div class="container">
+      <nav class="top-nav">
+        <div class="nav-links">
+          <a href="home.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="features.html" class="nav-link">Features</a>
+          <a href="#" class="nav-link active">Contact</a>
+        </div>
+      </nav>
+
+      <div class="content-wrapper">
+        <div class="contact-header">
+          <h1 class="animated-title">Get in Touch</h1>
+          <p class="subtitle">We'd love to hear from you</p>
+          <div class="header-decoration">
+            <div class="decoration-line"></div>
+            <div class="decoration-flower">
+              <div class="mini-petal"></div>
+              <div class="mini-petal"></div>
+              <div class="mini-petal"></div>
+              <div class="mini-petal"></div>
+              <div class="mini-center"></div>
+            </div>
+            <div class="decoration-line"></div>
+          </div>
+        </div>
+
+        <div class="contact-container">
+          <div class="contact-info">
+            <div class="info-card">
+              <div class="info-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <h3>Our Location</h3>
+              <p>Digital Garden, Tech Valley</p>
+            </div>
+            <div class="info-card">
+              <div class="info-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <h3>Phone</h3>
+              <p>+1 234 567 890</p>
+            </div>
+            <div class="info-card">
+              <div class="info-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h3>Email</h3>
+              <p>nova07pplg@gmail.com</p>
+            </div>
+          </div>
+
+          <form
+            id="contactForm"
+            class="contact-form"
+            onsubmit="sendEmail(event)"
+          >
+            <div class="form-group">
+              <div class="input-container">
+                <i class="fas fa-user"></i>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Your Name"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-container">
+                <i class="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="Your Email"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-container">
+                <i class="fas fa-tag"></i>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  required
+                  placeholder="Subject"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-container">
+                <i class="fas fa-comment-alt"></i>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  placeholder="Your Message"
+                ></textarea>
+              </div>
+            </div>
+            <button type="submit" class="submit-btn">
+              Send Message
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+
+        <div class="social-section">
+          <h2>Connect With Us</h2>
+          <div class="social-grid">
+            <a href="#" class="social-card">
+              <i class="fab fa-twitter"></i>
+              <span>Twitter</span>
+            </a>
+            <a href="#" class="social-card">
+              <i class="fab fa-instagram"></i>
+              <span>Instagram</span>
+            </a>
+            <a href="#" class="social-card">
+              <i class="fab fa-facebook"></i>
+              <span>Facebook</span>
+            </a>
+            <a href="#" class="social-card">
+              <i class="fab fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function sendEmail(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("message").value;
+
+        const mailtoLink = `mailto:nova07pplg@gmail.com?subject=${encodeURIComponent(
+          subject
+        )}&body=${encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\n\n${message}`
+        )}`;
+
+        window.location.href = mailtoLink;
+
+        // Reset form after sending
+        document.getElementById("contactForm").reset();
+
+        // Show success message
+        alert("Thank you for your message! We will get back to you soon.");
+      }
+    </script>
+  </body>
+</html>
